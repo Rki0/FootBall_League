@@ -2,6 +2,7 @@
 // 컴포넌트 props 타입
 export interface PropsType {
   standings: Array<any>;
+  leagueId: number | undefined;
 }
 
 // option 태그에 들어갈 값들의 타입

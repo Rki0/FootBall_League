@@ -30,7 +30,7 @@ function LeaguePage() {
     const options = {
       method: "GET",
       url: "https://api-football-v1.p.rapidapi.com/v3/standings",
-      params: { season: "2021", league: `${leagueId}` },
+      params: { season: "2022", league: `${leagueId}` },
       headers: {
         "X-RapidAPI-Key": `${API_KEY}`,
         "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
@@ -54,7 +54,7 @@ function LeaguePage() {
 
       <DetailMenu />
 
-      <Standings standings={standings} />
+      <Standings standings={standings} leagueId={leagueId} />
     </div>
   ) : (
     <p>Data Loading...</p>
