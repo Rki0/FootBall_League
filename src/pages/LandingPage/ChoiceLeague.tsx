@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_KEY } from "../../key";
 import { Link } from "react-router-dom";
-
-interface PropsType {
-  country: string;
-  pathname: string;
-}
+import { PropsType } from "./Interface";
+import { useSelector, useDispatch } from "react-redux";
+import { loadBigLeague } from "../../reducer/league_reducer";
+import { RootState } from "../../reducer/index";
 
 function ChoiceLeague({ country, pathname }: PropsType) {
   const [test, setTest] = useState<any>();
@@ -34,7 +33,7 @@ function ChoiceLeague({ country, pathname }: PropsType) {
 
   return (
     <Link
-      to={`/league/${pathname}`}
+      to={`/league/${pathname}/rank`}
       className="mb-4 rounded border-2 border-sky-300 p-1 bg-sky-200 md:w-[350px] md:h-[45vh] "
     >
       <div className="flex items-center border-b-2 border-sky-300 justify-between mb-1">

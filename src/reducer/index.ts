@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-// import league from "./league_reducer";
+import leagueReducer from "./league_reducer";
 
 const rootReducer = combineReducers({
-  // league,
+  leagueReducer,
 });
 
 export default rootReducer;
+
+export type RootState = ReturnType<typeof rootReducer>;

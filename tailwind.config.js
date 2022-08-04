@@ -4,7 +4,14 @@ module.exports = {
   // calc를 사용할 수 있게 만들어준다.
   mode: "jit",
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        england: "#3C185C",
+        spain: "#0C519C",
+        germany: "#D10614",
+        italy: "#024394",
+      },
+    },
   },
   variants: {
     extend: {},

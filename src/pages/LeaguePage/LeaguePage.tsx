@@ -1,14 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { API_KEY } from "../../key";
 import { useEffect, useState } from "react";
+import Standings from "./Standings";
+import DetailMenu from "./DetailMenu";
+import LeaguePageHeader from "./LeaguePageHeader";
 
 function LeaguePage() {
   const { country } = useParams();
 
-  const [leagueId, setLeagueId] = useState(39);
+  const [leagueId, setLeagueId] = useState<number>();
 
   const [leagueData, setLeagueData] = useState<any>();
+
+  const [standings, setStandings] = useState<any>();
 
   useEffect(() => {
     // Link의 파라미터에 따라 API에 Request할 값을 변경
@@ -35,28 +40,24 @@ function LeaguePage() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data.response[0]);
-        setLeagueData(response.data.response[0].league);
+        setLeagueData(response.data?.response[0].league);
+        setStandings(response.data?.response[0].league.standings[0]);
       })
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [leagueId]);
 
-  return (
+  return leagueData ? (
     <div>
-      <img src={leagueData?.logo} alt="league logo" />
+      <LeaguePageHeader leagueData={leagueData} />
 
-      <p>{leagueData?.country}</p>
-      <img src={leagueData?.flag} alt="nation flag" />
+      <DetailMenu />
 
-      <h1>{leagueData?.name}</h1>
-
-      <h2>순위표</h2>
-      <p>
-        {leagueData?.season} ~ {Number(leagueData?.season) + 1}
-      </p>
+      <Standings standings={standings} />
     </div>
+  ) : (
+    <p>Data Loading...</p>
   );
 }
 
