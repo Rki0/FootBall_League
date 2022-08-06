@@ -38,12 +38,12 @@ function ChoiceLeague({ country, pathname }: PropsType) {
     }
   }, [data]);
 
-  return (
+  return data ? (
     <Link
       to={`/league/${pathname}/rank`}
-      className="mb-4 rounded border-2 border-sky-300 p-1 bg-sky-200 md:w-[350px] md:h-[45vh] "
+      className="mb-4 rounded border-2 border-[rgba(255,255,255,0.2)] p-1 bg-[rgba(255,255,255,0.5)] md:w-[350px] md:h-[45vh] md:mr-2"
     >
-      <div className="flex items-center border-b-2 border-sky-300 justify-between mb-1">
+      <div className="flex items-center border-b-2 border-[rgba(255,255,255,0.2)] justify-between mb-1">
         <p className="text-base mr-1">{data?.country.name}</p>
         <img src={data?.country.flag} alt="league nation" className="w-6" />
       </div>
@@ -52,7 +52,7 @@ function ChoiceLeague({ country, pathname }: PropsType) {
         <img
           src={data?.league.logo}
           alt="league logo"
-          className="h-[60px] mr-4 md:h-[300px] md:my-5 md:mr-0 "
+          className="h-[60px] mr-4 md:h-[180px] md:my-5 md:mr-0 "
         />
         <p className="text-3xl md:mb-2">{data?.league.name}</p>
         <p className="hidden text-xl md:block">
@@ -60,6 +60,8 @@ function ChoiceLeague({ country, pathname }: PropsType) {
         </p>
       </div>
     </Link>
+  ) : (
+    <p>Data Loading...</p>
   );
 }
 

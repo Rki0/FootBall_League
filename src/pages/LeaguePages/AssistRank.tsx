@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 interface PlayerRankPropsType {
-  playerData: Array<any> | undefined;
+  playerData: Array<any>;
 }
 
 function AssistRank({ playerData }: PlayerRankPropsType) {

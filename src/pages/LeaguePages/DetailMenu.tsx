@@ -25,7 +25,7 @@ function DetailMenu() {
   }, []);
 
   return (
-    <nav className={`${leagueColor} font-semibold mb-3`}>
+    <nav className={`${leagueColor} font-semibold mb-4`}>
       <ul className="flex justify-around w-screen text-sm">
         <li>
           <NavLink
@@ -34,7 +34,7 @@ function DetailMenu() {
               isActive ? `font-bold border-b-2 ${borderColor} p-1` : "p-1"
             }
           >
-            순위
+            리그 순위
           </NavLink>
         </li>
         <li>
@@ -55,26 +55,6 @@ function DetailMenu() {
             }
           >
             도움 순위
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to={`/league/${country}/yellowrank`}
-            className={({ isActive }) =>
-              isActive ? `font-bold border-b-2 ${borderColor} p-1` : "p-1"
-            }
-          >
-            경고 순위
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to={`/league/${country}/redrank`}
-            className={({ isActive }) =>
-              isActive ? `font-bold border-b-2 ${borderColor} p-1` : "p-1"
-            }
-          >
-            퇴장 순위
           </NavLink>
         </li>
       </ul>

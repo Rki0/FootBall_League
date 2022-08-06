@@ -38,7 +38,7 @@ function LeagueTitle() {
       <img
         src={thisLeague?.league.logo}
         alt="league logo"
-        className="w-[60px] mr-4"
+        className="w-[60px] mr-4 animate-intro"
       />
 
       <div className={leagueColor}>

@@ -106,7 +106,7 @@ function Standings({ standings, leagueId }: PropsType) {
             >
               <td className={borderStyle}>{item.rank}</td>
               <td className={`text-start ${borderStyle}`}>
-                <div className="flex items-center">
+                <div className="flex items-center sm:pl-2">
                   <img
                     src={item.team.logo}
                     alt="team logo"

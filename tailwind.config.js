@@ -15,6 +15,15 @@ module.exports = {
         "italy-500": "#024394",
         "italy-200": "rgba(2,67,148,0.2)",
       },
+      keyframes: {
+        intro: {
+          from: { transform: "rotateY(0deg) scale(2.0)" },
+          to: { transform: "rotateY(360deg) scale(1.0)" },
+        },
+      },
+      animation: {
+        intro: "intro 2s ease-in-out",
+      },
     },
   },
   variants: {
