@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_KEY } from "../../key";
-import PlayerRank from "./PlayerRank";
+import AssistRank from "./AssistRank";
 
-function PlayerRankPage() {
+function AssistRankPage() {
   const { country } = useParams();
 
   const [leagueId, setLeagueId] = useState<string>();
@@ -26,7 +26,7 @@ function PlayerRankPage() {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/players/topscorers",
+      url: "https://api-football-v1.p.rapidapi.com/v3/players/topassists",
       params: { league: leagueId, season: "2021" },
       headers: {
         "X-RapidAPI-Key": `${API_KEY}`,
@@ -44,13 +44,11 @@ function PlayerRankPage() {
       });
   }, [leagueId]);
 
-  return playerData ? (
+  return (
     <div>
-      <PlayerRank playerData={playerData} />
+      <AssistRank playerData={playerData} />
     </div>
-  ) : (
-    <p>Data Loading...</p>
   );
 }
 
-export default PlayerRankPage;
+export default AssistRankPage;

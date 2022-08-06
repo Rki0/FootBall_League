@@ -1,30 +1,34 @@
-// 액션 타입 정의
-const LOAD_BIG_LEAGUE = "load_big_league" as const;
+import { SAVE_BIG_LEAGUE, SAVE_LEAGUE_PLAYER } from "../action/types";
+import { saveBigLeague, saveLeaguePlayer } from "../action/league_action";
 
-// 액션 함수 정의
-// 4대 리그 정보 가져오기
-export const loadBigLeague = () => ({ type: LOAD_BIG_LEAGUE });
-
-// 초기값 타입 정의
-interface InitailStateType {
+// initialState의 타입 정의
+type LeagueStateType = {
   leagueData: Array<any>;
-}
-
-// 초기값 정의
-const initialState: InitailStateType = {
-  leagueData: [],
+  playerRank: Array<any>;
 };
 
-// 리듀서의 action props에 명시할 타입 정의
-type LeagueActionType = ReturnType<typeof loadBigLeague>;
+// initialState
+const initialState = {
+  leagueData: [],
+  playerRank: [],
+};
+
+// 리듀서 파라미터 중 action의 타입 정의
+type LeagueActionType =
+  | ReturnType<typeof saveBigLeague>
+  | ReturnType<typeof saveLeaguePlayer>;
 
 export default function leagueReducer(
-  state: InitailStateType = initialState,
+  state: LeagueStateType = initialState,
   action: LeagueActionType
 ) {
   switch (action.type) {
-    case LOAD_BIG_LEAGUE:
-      return { ...state };
+    case SAVE_BIG_LEAGUE:
+      // return { ...state, leagueData: action.payload };
+      return { ...state, leagueData: state.leagueData.concat(action.payload) };
+
+    case SAVE_LEAGUE_PLAYER:
+      return { ...state, playerRank: state.playerRank.concat(action.payload) };
 
     default:
       return state;

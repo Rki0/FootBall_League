@@ -1,17 +1,13 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_KEY } from "../../key";
 import { useEffect, useState } from "react";
 import Standings from "./Standings";
-import DetailMenu from "./DetailMenu";
-import LeaguePageHeader from "./LeaguePageHeader";
 
 function LeaguePage() {
   const { country } = useParams();
 
   const [leagueId, setLeagueId] = useState<number>();
-
-  const [leagueData, setLeagueData] = useState<any>();
 
   const [standings, setStandings] = useState<any>();
 
@@ -40,7 +36,6 @@ function LeaguePage() {
     axios
       .request(options)
       .then(function (response) {
-        setLeagueData(response.data?.response[0].league);
         setStandings(response.data?.response[0].league.standings[0]);
       })
       .catch(function (error) {
@@ -48,12 +43,8 @@ function LeaguePage() {
       });
   }, [leagueId]);
 
-  return leagueData ? (
+  return standings ? (
     <div>
-      <LeaguePageHeader leagueData={leagueData} />
-
-      <DetailMenu />
-
       <Standings standings={standings} leagueId={leagueId} />
     </div>
   ) : (

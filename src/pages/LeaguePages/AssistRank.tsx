@@ -5,7 +5,7 @@ interface PlayerRankPropsType {
   playerData: Array<any> | undefined;
 }
 
-function PlayerRank({ playerData }: PlayerRankPropsType) {
+function AssistRank({ playerData }: PlayerRankPropsType) {
   const { country } = useParams();
 
   const [leagueColor, setLeagueColor] = useState("black");
@@ -45,14 +45,11 @@ function PlayerRank({ playerData }: PlayerRankPropsType) {
         <thead>
           <tr>
             <th className={`w-auto h-8 ${borderStyle}`}></th>
-            <th className={`w-1/12 sm:w-1/12 ${borderStyle}`}>클럽</th>
-            <th className={`w-5/12 sm:w-3/12 ${borderStyle}`}>선수</th>
-            <th className={`w-1/12 ${borderStyle}`}>득점</th>
-            <th className={`w-2/12 sm:w-2/12 ${borderStyle}`}>슈팅 시도</th>
-            <th className={`w-2/12 sm:w-2/12 ${borderStyle}`}>유효 슈팅</th>
-            <th className={`hidden sm:table-cell w-2/12 ${borderStyle}`}>
-              드리블 성공률
-            </th>
+            <th className={`w-1/12 sm:w-2/12 ${borderStyle}`}>클럽</th>
+            <th className={`w-5/12 sm:w-4/12 ${borderStyle}`}>선수</th>
+            <th className={`w-1/12 ${borderStyle}`}>도움</th>
+            <th className={`w-2/12 sm:w-2/12 ${borderStyle}`}>패스 시도</th>
+            <th className={`w-2/12 sm:w-2/12 ${borderStyle}`}>키 패스</th>
             <th className="w-1/12">출전</th>
           </tr>
         </thead>
@@ -84,16 +81,11 @@ function PlayerRank({ playerData }: PlayerRankPropsType) {
                   <span>{item.player.name}</span>
                 </div>
               </td>
-              <td className={borderStyle}>{item.statistics[0].goals.total}</td>
-              <td className={borderStyle}>{item.statistics[0].shots.total}</td>
-              <td className={borderStyle}>{item.statistics[0].shots.on}</td>
-              <td className={`hidden sm:table-cell ${borderStyle}`}>
-                {(
-                  (item.statistics[0].dribbles.success /
-                    item.statistics[0].dribbles.attempts) *
-                  100
-                ).toFixed(1)}
+              <td className={borderStyle}>
+                {item.statistics[0].goals.assists}
               </td>
+              <td className={borderStyle}>{item.statistics[0].passes.total}</td>
+              <td className={borderStyle}>{item.statistics[0].passes.key}</td>
               <td>{item.statistics[0].games.appearences}</td>
             </tr>
           ))}
@@ -103,4 +95,4 @@ function PlayerRank({ playerData }: PlayerRankPropsType) {
   );
 }
 
-export default PlayerRank;
+export default AssistRank;

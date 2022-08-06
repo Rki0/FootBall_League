@@ -66,15 +66,3 @@ export const options: OptionsType[] = [
     season: "2022",
   },
 ];
-
-// LeaguePageHeader.tsx //
-// props로 받아온 것들 중 사용할 것들만 타입 선언
-export interface LeaguePageHeaderPropsType {
-  logo: string;
-  name: string;
-  country: string;
-}
-
-export interface HeaderPropsType {
-  leagueData: LeaguePageHeaderPropsType;
-}
